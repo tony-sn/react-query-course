@@ -1,0 +1,28 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+.vscode
+
+# Created by https://www.toptal.com/developers/gitignore/api/react
+# Edit at https://www.toptal.com/developers/gitignore?templates=react
+
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
+
+.env*
+
+# End of https://www.toptal.com/developers/gitignore/api/react
