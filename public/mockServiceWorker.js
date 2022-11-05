@@ -1,6 +1,3 @@
-/* eslint-disable */
-/* tslint:disable */
-
 /**
  * Mock Service Worker (0.35.0).
  * @see https://github.com/mswjs/msw
@@ -16,7 +13,7 @@ self.addEventListener("install", function () {
   return self.skipWaiting();
 });
 
-self.addEventListener("activate", async function (event) {
+self.addEventListener("activate", async function (_event) {
   return self.clients.claim();
 });
 
@@ -199,7 +196,7 @@ async function getResponse(event, client, requestId) {
     case "MOCK_SUCCESS": {
       return delayPromise(
         () => respondWithMock(clientMessage),
-        clientMessage.payload.delay,
+        clientMessage.payload.delay
       );
     }
 
@@ -228,7 +225,7 @@ async function getResponse(event, client, requestId) {
  This exception has been gracefully handled as a 500 response, however, it's strongly recommended to resolve this error, as it indicates a mistake in your code. If you wish to mock an error response, please see this guide: https://mswjs.io/docs/recipes/mocking-error-responses\
  `,
         request.method,
-        request.url,
+        request.url
       );
 
       return respondWithMock(clientMessage);
@@ -273,7 +270,7 @@ self.addEventListener("fetch", function (event) {
         console.warn(
           '[MSW] Successfully emulated a network error for the "%s %s" request.',
           request.method,
-          request.url,
+          request.url
         );
         return;
       }
@@ -284,9 +281,9 @@ self.addEventListener("fetch", function (event) {
  [MSW] Caught an exception from the "%s %s" request (%s). This is probably not a problem with Mock Service Worker. There is likely an additional logging output above.`,
         request.method,
         request.url,
-        `${error.name}: ${error.message}`,
+        `${error.name}: ${error.message}`
       );
-    }),
+    })
   );
 });
 
