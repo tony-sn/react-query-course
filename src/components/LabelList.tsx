@@ -7,7 +7,7 @@ export default function LabelList({
   toggle,
 }: {
   selected: LabelType[];
-  toggle: Function;
+  toggle: TODO_TYPEME;
 }) {
   const labelsQuery = useLabelsData();
 
@@ -23,7 +23,7 @@ export default function LabelList({
               <button
                 onClick={() => toggle(label.id)}
                 className={`label ${
-                  selected.includes((label as any).id) ? "selected " : ""
+                  selected.includes((label as TODO_TYPEME).id) ? "selected " : ""
                 }${label.color}`}
               >
                 {label.name}

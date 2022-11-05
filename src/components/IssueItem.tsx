@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { GoIssueOpened, GoIssueClosed, GoComment } from "react-icons/go";
 import { relativeDate } from "helpers/relativeDate";
-import { IssueItemProps, LabelType, TODO_TYPEME } from "interfaces/index";
+import { IssueItemProps, LabelType } from "interfaces/index";
 import { useUserData } from "helpers/useUserData";
 import { Label } from "./Label";
 
@@ -51,7 +51,7 @@ export function IssueItem({
         />
       ) : null}
       <span className="comment-count">
-        {commentCount > 0 ? (
+        {commentCount as number > 0 ? (
           <>
             <GoComment />
             {commentCount}
