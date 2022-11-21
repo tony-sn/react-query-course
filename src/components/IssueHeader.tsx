@@ -2,6 +2,7 @@ import { GoIssueClosed, GoIssueOpened } from 'react-icons/go'
 import { possibleStatus } from 'helpers/defaultData'
 import { useUserData } from 'helpers/useUserData'
 import { relativeDate } from 'helpers/relativeDate'
+import type { CommentProps } from 'interfaces/index'
 
 export const IssueHeader = ({
   title,
@@ -10,6 +11,13 @@ export const IssueHeader = ({
   createdBy,
   createdDate,
   comments,
+}: {
+  title: string
+  number: string | number
+  status: 'done' | 'cancelled' | 'todo'
+  createdBy: Date | string | undefined
+  createdDate: Date | string | undefined
+  comments: CommentProps[]
 }) => {
   const statusObject = possibleStatus.find(
     (pstatus: { id: string }) => pstatus.id === status,
@@ -29,10 +37,10 @@ export const IssueHeader = ({
         >
           {status === 'done' || status === 'cancelled'
             ? (
-            <GoIssueClosed />
+              <GoIssueClosed />
               )
             : (
-            <GoIssueOpened />
+              <GoIssueOpened />
               )}
           {statusObject.label}
         </span>
