@@ -13,9 +13,9 @@ module.exports = {
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
       ],
       rules: {
-        '@typescript-eslint/await-thenable': 'off',
-        '@typescript-eslint/no-unused-vars': 'off',
-        'typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/await-thenable': 0,
+        '@typescript-eslint/no-unused-vars': 0,
+        '@typescript-eslint/no-explicit-any': 0,
       },
       parser: '@typescript-eslint/parser',
       parserOptions: {
