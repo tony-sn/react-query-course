@@ -1,9 +1,9 @@
 import { useLabelsData } from 'helpers/useLabelsData'
-import type { LabelType, TODO_TYPEME } from 'interfaces/index'
+import type { LabelType } from 'interfaces/index'
 
 interface LabelListProps {
-  selected: LabelType[]
-  toggle: () => void
+  selected: LabelType[] | string[]
+  toggle: (id: string) => void
 }
 
 // FIXME: type for toggle function later
@@ -22,11 +22,13 @@ export default function LabelList({
           )
         : (
           <ul>
-            {labelsQuery.data.map((label: LabelType) => (
+
+            {
+            labelsQuery.data.map((label: LabelType) => (
               <li key={label.id}>
                 <button
                   onClick={() => toggle(label.id)}
-                  className={`label ${selected.includes((label as TODO_TYPEME).id) ? 'selected ' : ''
+                  className={`label ${selected.includes(label.id) ? 'selected ' : ''
                     }${label.color}`}
                 >
                   {label.name}

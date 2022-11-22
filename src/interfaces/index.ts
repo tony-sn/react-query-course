@@ -7,6 +7,8 @@ export interface LabelType {
 }
 export type CreatedDate = string | number | Date | undefined
 
+export type Selected = 'bug' | 'feature' | 'enhancement' | 'question' | 'help wanted' | 'wontfix' | 'duplicate'
+
 export interface CommentProps {
   comment?: {
     id: string

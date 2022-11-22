@@ -16,6 +16,7 @@ module.exports = {
         '@typescript-eslint/await-thenable': 0,
         '@typescript-eslint/no-unused-vars': 0,
         '@typescript-eslint/no-explicit-any': 0,
+        'eslint/-no-debugger': 0,
       },
       parser: '@typescript-eslint/parser',
       parserOptions: {

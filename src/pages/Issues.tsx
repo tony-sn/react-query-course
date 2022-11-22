@@ -2,11 +2,10 @@ import { useState } from 'react'
 
 import IssuesList from 'components/IssuesList'
 import LabelList from 'components/LabelList'
-import type { LabelType } from 'interfaces/index'
 import { StatusSelect } from 'components/StatusSelect'
 
 export default function Issues() {
-  const [labels, setLabels] = useState<LabelType[]>([])
+  const [labels, setLabels] = useState<string[]>([])
   const [status, setStatus] = useState('')
 
   return (
@@ -19,7 +18,7 @@ export default function Issues() {
         <aside>
           <LabelList
             selected={labels}
-            toggle={(label: LabelType) =>
+            toggle={(label: string) =>
               setLabels(currentLabels =>
                 currentLabels.includes(label)
                   ? currentLabels.filter(

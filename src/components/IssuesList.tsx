@@ -1,12 +1,12 @@
 import { useQuery } from 'react-query'
-import type { IssueItemProps, LabelType } from 'interfaces/index'
+import type { IssueItemProps } from 'interfaces/index'
 import { IssueItem } from './IssueItem'
 
 export default function IssuesList({
   labels,
   status,
 }: {
-  labels: LabelType[]
+  labels: string[]
   status: string
 }) {
   const issuesQuery = useQuery(['issues', { labels, status }], () => {
