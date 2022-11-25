@@ -34,6 +34,7 @@ export default function IssuesList({
       <form
         onSubmit={(event) => {
           event.preventDefault()
+          console.log(event.target)
           setSearchValue(event.target.elements.search.value)
         }}
       >

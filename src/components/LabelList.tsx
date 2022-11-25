@@ -1,12 +1,11 @@
 import { useLabelsData } from 'helpers/useLabelsData'
-import type { LabelType } from 'interfaces/index'
+import type { LabelType, TODO_TYPEME } from 'interfaces/index'
 
 interface LabelListProps {
   selected: LabelType[] | string[]
   toggle: (id: string) => void
 }
 
-// FIXME: type for toggle function later
 export default function LabelList({
   selected,
   toggle,
@@ -24,17 +23,17 @@ export default function LabelList({
           <ul>
 
             {
-            labelsQuery.data.map((label: LabelType) => (
-              <li key={label.id}>
-                <button
-                  onClick={() => toggle(label.id)}
-                  className={`label ${selected.includes(label.id) ? 'selected ' : ''
-                    }${label.color}`}
-                >
-                  {label.name}
-                </button>
-              </li>
-            ))}
+              labelsQuery.data.map((label: LabelType) => (
+                <li key={label.id}>
+                  <button
+                    onClick={() => toggle(label.id)}
+                    className={`label ${selected.includes(label.id as TODO_TYPEME) ? 'selected ' : ''
+                      }${label.color}`}
+                  >
+                    {label.name}
+                  </button>
+                </li>
+              ))}
           </ul>
           )}
     </div>
