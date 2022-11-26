@@ -17,7 +17,6 @@ export default function IssuesList({
       res.json(),
     )
   })
-
   const [searchValue, setSearchValue] = useState('')
 
   const searchQuery = useQuery(
@@ -34,7 +33,7 @@ export default function IssuesList({
       <form
         onSubmit={(event) => {
           event.preventDefault()
-          console.log(event.target)
+          console.log(event.target.elements.search)
           setSearchValue(event.target.elements.search.value)
         }}
       >
@@ -59,21 +58,21 @@ export default function IssuesList({
         : searchQuery.fetchStatus === 'idle'
           && searchQuery.isLoading === true
           ? (
-          <ul className="issues-list">
-            {issuesQuery.data.map((issue: IssueItemProps) => (
-              <IssueItem
-                key={issue.id}
-                title={issue.title}
-                number={issue.number}
-                assignee={issue.assignee}
-                commentCount={issue?.comments?.length}
-                createdBy={issue.createdBy}
-                createdDate={issue.createdDate}
-                labels={issue.labels}
-                status={issue.status}
-              />
-            ))}
-          </ul>
+            <ul className="issues-list">
+              {issuesQuery.data.map((issue: IssueItemProps) => (
+                <IssueItem
+                  key={issue.id}
+                  title={issue.title}
+                  number={issue.number}
+                  assignee={issue.assignee}
+                  commentCount={issue?.comments?.length}
+                  createdBy={issue.createdBy}
+                  createdDate={issue.createdDate}
+                  labels={issue.labels}
+                  status={issue.status}
+                />
+              ))}
+            </ul>
             )
 
           : (
@@ -81,27 +80,27 @@ export default function IssuesList({
               <h2>Search Results</h2>
               {searchQuery.isLoading
                 ? (
-                <p>Loading...</p>
+                  <p>Loading...</p>
                   )
                 : (
-                <>
-                  <p>{searchQuery.data.count} Results</p>
-                  <ul className="issues-list">
-                    {searchQuery.data.items.map(issue => (
-                      <IssueItem
-                        key={issue.id}
-                        title={issue.title}
-                        number={issue.number}
-                        assignee={issue.assignee}
-                        commentCount={issue.comments.length}
-                        createdBy={issue.createdBy}
-                        createdDate={issue.createdDate}
-                        labels={issue.labels}
-                        status={issue.status}
-                      />
-                    ))}
-                  </ul>
-                </>
+                  <>
+                    <p>{searchQuery.data?.count} Results</p>
+                    <ul className="issues-list">
+                      {searchQuery.data?.items.map((issue: IssueItemProps) => (
+                        <IssueItem
+                          key={issue.id}
+                          title={issue.title}
+                          number={issue.number}
+                          assignee={issue.assignee}
+                          commentCount={issue?.comments?.length}
+                          createdBy={issue.createdBy}
+                          createdDate={issue.createdDate}
+                          labels={issue.labels}
+                          status={issue.status}
+                        />
+                      ))}
+                    </ul>
+                  </>
                   )}
             </>
             )}
