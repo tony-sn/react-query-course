@@ -19,7 +19,7 @@ export default function IssuesList({
   })
   const [searchValue, setSearchValue] = useState('')
 
-  const searchQuery = useQuery(
+  const searchQuery: Record<string, any> = useQuery(
     ['issues', 'search', searchValue],
     () =>
       fetch(`/api/search/issues?q=${searchValue}`).then(res => res.json()),
@@ -33,8 +33,7 @@ export default function IssuesList({
       <form
         onSubmit={(event) => {
           event.preventDefault()
-          console.log(event.target.elements.search)
-          setSearchValue(event.target.elements.search.value)
+          setSearchValue((event.target as HTMLFormElement).elements.search.value)
         }}
       >
         <label htmlFor="search">Search Issues</label>

@@ -11,7 +11,7 @@ export function StatusSelect({
   onChange,
 }: {
   value: string
-  onChange: import('react').ChangeEventHandler<HTMLSelectElement>
+  onChange: import('react').ChangeEventHandler<HTMLSelectElement> .  edds
 }) {
   return (
     <select value={value} onChange={onChange} className="status-select">
