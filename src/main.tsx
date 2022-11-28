@@ -4,6 +4,7 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { worker } from '@uidotdev/react-query-api'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import App from './App'
 
 const queryClient = new QueryClient()
@@ -24,6 +25,7 @@ new Promise(resolve => setTimeout(resolve, 100))
               <App />
             </div>
           </BrowserRouter>
+          <ReactQueryDevtools />
         </QueryClientProvider>
       </React.StrictMode>,
     )

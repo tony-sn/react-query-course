@@ -3,6 +3,7 @@ import { useQuery } from 'react-query'
 import type { IssueItemProps } from 'interfaces/index'
 import { IssueItem } from './IssueItem'
 
+// TODO: read about stale time in react query doc
 export default function IssuesList({
   labels,
   status,
@@ -10,13 +11,19 @@ export default function IssuesList({
   labels: string[]
   status: string
 }) {
-  const issuesQuery = useQuery(['issues', { labels, status }], () => {
-    const statusString = status ? `&status=${status}` : ''
-    const labelsString = labels.map(label => `labels[]=${label}`).join('&')
-    return fetch(`/api/issues?${labelsString}${statusString}`).then(res =>
-      res.json(),
-    )
-  })
+  const issuesQuery = useQuery(
+    ['issues', { labels, status }],
+    () => {
+      const statusString = status ? `&status=${status}` : ''
+      const labelsString = labels.map(label => `labels[]=${label}`).join('&')
+      return fetch(`/api/issues?${labelsString}${statusString}`).then(res =>
+        res.json(),
+      )
+    },
+    {
+      staleTime: 1000 * 60,
+    },
+  )
   const [searchValue, setSearchValue] = useState('')
 
   const searchQuery: Record<string, any> = useQuery(
@@ -33,6 +40,8 @@ export default function IssuesList({
       <form
         onSubmit={(event) => {
           event.preventDefault()
+          console.log('event log: ', event?.target.elements.search.value)
+          // @ts-expect-error searchValue is a string
           setSearchValue((event.target as HTMLFormElement).elements.search.value)
         }}
       >

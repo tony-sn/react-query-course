@@ -17,6 +17,9 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': 0,
         '@typescript-eslint/no-explicit-any': 0,
         'eslint/-no-debugger': 0,
+        'no-console': 0,
+        'eslint/-no-console': 0,
+        '@typescript-eslint/prefer-ts-expect-error': 0,
       },
       parser: '@typescript-eslint/parser',
       parserOptions: {

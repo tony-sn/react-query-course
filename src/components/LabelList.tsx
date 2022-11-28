@@ -1,5 +1,5 @@
 import { useLabelsData } from 'helpers/useLabelsData'
-import type { LabelType, TODO_TYPEME } from 'interfaces/index'
+import type { LabelType } from 'interfaces/index'
 
 interface LabelListProps {
   selected: LabelType[] | string[]
@@ -27,7 +27,8 @@ export default function LabelList({
                 <li key={label.id}>
                   <button
                     onClick={() => toggle(label.id)}
-                    className={`label ${selected.includes(label.id as TODO_TYPEME) ? 'selected ' : ''
+                    // @ts-expect-error label.id is a string
+                    className={`label ${selected.includes(label!.id) ? 'selected ' : ''
                       }${label.color}`}
                   >
                     {label.name}

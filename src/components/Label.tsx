@@ -2,7 +2,6 @@ import { useLabelsData } from 'helpers/useLabelsData'
 
 import type { LabelType } from 'interfaces/index'
 
-// TODO: check Type label here
 export function Label({ label }: { label: string }) {
   const labelsQuery = useLabelsData()
   if (labelsQuery.isLoading)
