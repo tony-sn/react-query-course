@@ -9,6 +9,8 @@ import App from './App'
 
 const queryClient = new QueryClient()
 
+// TODO: learn about use React Query Devtools
+
 new Promise(resolve => setTimeout(resolve, 100))
   .then(() =>
     worker.start({
