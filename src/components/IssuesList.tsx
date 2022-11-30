@@ -4,7 +4,6 @@ import type { IssueItemProps } from 'interfaces/index'
 import fetchWithError from 'helpers/fetchWithError'
 import { IssueItem } from './IssueItem'
 
-// TODO: read about stale time in react query doc
 export default function IssuesList({
   labels,
   status,
@@ -12,17 +11,11 @@ export default function IssuesList({
   labels: string[]
   status: string
 }) {
-  const issuesQuery = useQuery(
-    ['issues', { labels, status }],
-    () => {
-      const statusString = status ? `&status=${status}` : ''
-      const labelsString = labels.map(label => `labels[]=${label}`).join('&')
-      return fetchWithError(`/api/issues?${labelsString}${statusString}`)
-    },
-    {
-      staleTime: 1000 * 60,
-    },
-  )
+  const issuesQuery = useQuery(['issues', { labels, status }], () => {
+    const statusString = status ? `&status=${status}` : ''
+    const labelsString = labels.map(label => `labels[]=${label}`).join('&')
+    return fetchWithError(`/api/issues?${labelsString}${statusString}`)
+  })
   const [searchValue, setSearchValue] = useState('')
 
   const searchQuery: Record<string, any> = useQuery(

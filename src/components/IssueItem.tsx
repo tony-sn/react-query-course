@@ -14,11 +14,12 @@ export function IssueItem({
   createdDate,
   labels,
   status,
+  id,
 }: IssueItemProps) {
   const assigneeUser = useUserData(assignee)
   const createdByUser = useUserData(createdBy)
   return (
-    <li>
+    <li key={id}>
       <div>
         {status === 'done' || status === 'cancelled'
           ? (

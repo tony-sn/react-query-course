@@ -7,9 +7,15 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import App from './App'
 
-const queryClient = new QueryClient()
-
 // TODO: learn about use React Query Devtools
+// TODO: learn about stale time, default options
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60,
+    },
+  },
+})
 
 new Promise(resolve => setTimeout(resolve, 100))
   .then(() =>

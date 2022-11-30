@@ -1,6 +1,6 @@
 import type { TODO_TYPEME } from 'interfaces/index'
 
-export default async function fetchWithError(url: TODO_TYPEME, options?: ODO_TYPEME) {
+export default async function fetchWithError(url: TODO_TYPEME, options?: TODO_TYPEME) {
   const response = await fetch(url, options)
 
   if (response.status === 200) {
