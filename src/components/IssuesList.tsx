@@ -4,7 +4,7 @@ import type { IssueItemProps } from 'interfaces/index'
 import fetchWithError from 'helpers/fetchWithError'
 import { IssueItem } from './IssueItem'
 
-// TODO: learn about signal in React Query
+// TODO: learn about signal in React Query, query cancellation
 export default function IssuesList({
   labels,
   status,
