@@ -3,6 +3,17 @@ import { useQuery } from 'react-query'
 import type { IssueItemProps } from 'interfaces/index'
 import fetchWithError from 'helpers/fetchWithError'
 import { IssueItem } from './IssueItem'
+import Loader from './Loader'
+
+interface FormProps extends HTMLFormControlsCollection {
+  search: {
+    value: HTMLInputElement | string
+  }
+}
+
+interface SearchFormProps extends HTMLFormElement {
+  readonly elements: FormProps
+}
 
 // TODO: learn about signal in React Query, query cancellation
 export default function IssuesList({
@@ -19,7 +30,7 @@ export default function IssuesList({
       signal,
     })
   })
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState<SearchFormProps | string>('')
 
   const searchQuery: Record<string, any> = useQuery(
     ['issues', 'search', searchValue],
@@ -35,11 +46,10 @@ export default function IssuesList({
   return (
     <div>
       <form
-        onSubmit={(event) => {
+        onSubmit={(event: React.FormEvent<SearchFormProps>) => {
           event.preventDefault()
-          console.log('event log: ', event?.target.elements.search.value)
-          // @ts-expect-error searchValue is a string
-          setSearchValue((event.target as HTMLFormElement).elements.search.value)
+
+          setSearchValue(event.currentTarget.elements.search.value)
         }}
       >
         <label htmlFor="search">Search Issues</label>
@@ -55,7 +65,7 @@ export default function IssuesList({
         />
       </form>
 
-      <h1>Issues List</h1>
+      <h2>Issues List {issuesQuery.fetchStatus === 'fetching' ? <Loader /> : null}</h2>
       {issuesQuery.isLoading
         ? (
           <p>Loading...</p>
