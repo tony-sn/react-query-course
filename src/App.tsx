@@ -1,27 +1,31 @@
-import { Link, Route, Routes, useMatch } from 'react-router-dom'
-import Issues from './pages/Issues'
-import Issue from './pages/Issue'
-import AddIssue from './pages/AddIssue'
+import { useQuery } from "@tanstack/react-query";
 
-function App() {
-  const isRootPath = useMatch({ path: '/', end: true })
-  return (
-    <div className="App">
-      {!isRootPath
-        ? (
-        <Link to="/">Back to Issues List</Link>
-          )
-        : (
-        <span>&nbsp;</span>
-          )}
-      <h1>Issue Tracker</h1>
-      <Routes>
-        <Route path="/" element={<Issues />} />
-        <Route path="/add" element={<AddIssue />} />
-        <Route path="/issue/:number" element={<Issue />} />
-      </Routes>
-    </div>
-  )
+const url = `https://ui.dev/api/courses/react-query/status`;
+
+function fetchStatus() {
+  return fetch(url).then((res) => res.json());
+}
+function APIStatus() {
+  const { data, isLoading } = useQuery(["status"], () => fetchStatus());
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  return <pre>{JSON.stringify(data)}</pre>;
 }
 
-export default App
+function App() {
+  return (
+    <div className="yellow-border">
+      <div className="wrapper">
+        <div className="container-outer">
+          <div className="container">
+            <APIStatus />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;

@@ -24,7 +24,8 @@
       "helpers/*": ["src/helpers/*"],
       "hooks/*": ["src/hooks/*"],
       "interfaces/*": ["src/interfaces/*"],
-      "pages/*": ["src/pages/*"]
+      "pages/*": ["src/pages/*"],
+      "@/*": ["src/*"]
     }
   },
   "include": ["./src"],
