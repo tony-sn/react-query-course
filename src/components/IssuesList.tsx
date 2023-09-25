@@ -1,29 +1,27 @@
-import { useQuery } from 'react-query'
-import type { IssueItemProps, LabelType } from 'interfaces/index'
-import { IssueItem } from './IssueItem'
+import { useQuery } from "@tanstack/react-query";
+import type { IssueItemProps, LabelType } from "interfaces/index";
+import { IssueItem } from "./IssueItem";
 
 export default function IssuesList({
   labels,
   status,
 }: {
-  labels: LabelType[]
-  status: string
+  labels: LabelType[];
+  status: string;
 }) {
-  const issuesQuery = useQuery(['issues', { labels, status }], () => {
-    const statusString = status ? `&status=${status}` : ''
-    const labelsString = labels.map(label => `labels[]=${label}`).join('&')
-    return fetch(`/api/issues?${labelsString}${statusString}`).then(res =>
+  const issuesQuery = useQuery(["issues", { labels, status }], () => {
+    const statusString = status ? `&status=${status}` : "";
+    const labelsString = labels.map((label) => `labels[]=${label}`).join("&");
+    return fetch(`/api/issues?${labelsString}${statusString}`).then((res) =>
       res.json(),
-    )
-  })
+    );
+  });
   return (
     <div>
       <h1>Issues List</h1>
-      {issuesQuery.isLoading
-        ? (
+      {issuesQuery.isLoading ? (
         <p>Loading...</p>
-          )
-        : (
+      ) : (
         <ul className="issues-list">
           {issuesQuery.data.map((issue: IssueItemProps) => (
             <IssueItem
@@ -39,7 +37,7 @@ export default function IssuesList({
             />
           ))}
         </ul>
-          )}
+      )}
     </div>
-  )
+  );
 }
